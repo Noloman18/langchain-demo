@@ -1,0 +1,7 @@
+### Send POST request with json body
+POST http://127.0.0.1:5000/query-my-data
+Content-Type: application/json
+
+{
+    "question": "How do I create a Jira story with the summary 'Test' and the description 'Test' using the Jira API?"
+}
