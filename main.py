@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
-from flask import Flask, request
+from flask import Flask, request, Response
+from flask_cors import CORS
 from langchain.chat_models import ChatOpenAI
 from langchain.document_loaders import DirectoryLoader
 from langchain.embeddings.openai import OpenAIEmbeddings
@@ -49,6 +50,14 @@ chain = (
 )
 
 app = Flask(__name__)
+CORS(app, resources={r"*": {"origins": "*"}})
+
+@app.before_request
+def handle_preflight():
+    if request.method == "OPTIONS":
+        res = Response()
+        res.headers['X-Content-Type-Options'] = '*'
+        return res
 
 @app.route('/query-my-data', methods=['POST'])
 def post():
