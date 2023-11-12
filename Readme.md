@@ -5,3 +5,4 @@ Application uses the following python libraries:
 * FAISS vector database
 * OpenAI
 * Python LoadEnv
+* TikTokens
